@@ -4,11 +4,17 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -40,16 +46,11 @@ public class RemarkCommand extends Command {
     private final Index index;
     private final String remark;
 
-    /**
-     * @param index of the person in the filtered person list to edit the remark
-     * @param remark of the person to be updated to
-     */
     public RemarkCommand(Index index, String remark) {
-        requireAllNonNull(index, remark);
-
         this.index = index;
         this.remark = remark;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         throw new CommandException(String.format(MESSAGE_ARGUMENTS, index.getOneBased(), remark));
