@@ -42,14 +42,16 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 [[Features]]
 == Features
 
-====
-*Command Format*
+=== Reminders
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-====
+Adds a reminder task that will take a date and time. +
+When the time has arrived, a pop up will appear reminding the user to complete the task. +
+
+Format: `reminder <description> /at yyyy-mm-ddThh-mm-ss`
+
+A reminder can also be added to an existing task, just specify the task index instead of the description.
+
+Format: `reminder <index> /at yyyy-mm-ddThh-mm-ss`
 
 === Viewing help : `help`
 
@@ -89,6 +91,28 @@ Examples:
 Edits the name of the 1st task to be `Do Spanish Quiz`.
 * `edit 2 n/Add Buy Feature ld/2020-03-04` +
 Edits the name and date of the 2nd task to be `Add Buy Feature` and `4th Mar 2020`, respectively.
+
+=== Using Pomodoro: `pom`
+
+Starts the Pomodoro timer, with a task in focus +
+Format: `pom INDEX`
+
+****
+* Focus is on the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index *must be a positive integer* 1, 2, 3, ...
+* Runs Pomodoro for one cycle (Default 25 minutes of work, 5 minutes of rest)
+****
+
+Pomodoro Flow: +
+
+. `pom 10` starts a timer of 25 minutes, focusing on task at index 10.
+.. If task is completed before time is up: +
+... `done 10` to complete the task. +
+... The app will prompt you with `continue?(Y #) or end(N)` +
+... `Y INDEX`: Pomodoro continues remaining time with new task at `INDEX` in focus. +
+... `N` : The Pomodoro timer is stopped and the app is in the `neutral` state.
+.. If Pomodoro timer is up: +
+... Pomodoro prompts to check to go into 5 minute break, and prompts to check again then continues 25-minute work
+
 
 === Locating tasks by a keyword: `find`
 
@@ -138,11 +162,23 @@ Format: `clear`
 Exits the program. +
 Format: `exit`
 
+=== Statistics : 'stats'
+
+Views statistics generated through the app usage. 
+stats SPEED/DONE 
+SPEED : Displays average time taken to complete tasks over past week/month/year. 
+DONE : Displays average number of tasks done over past week/month/year.
+
+=== Pet
+
+The Pet gives a sense of responsibility to the user. +
+The Pet acts as a motivation to encourage the user to be productive. +
+The Pet gives a sense of satisfaction to the user when it is being fed.
+
 === Saving the data
 
 Address book data are saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
-
 
 == FAQ
 
@@ -162,3 +198,4 @@ e.g. `edit 2 n/Add Buy Feature ld/2020-03-04`
 e.g. `find Quiz Essay`
 * *List* : `list`
 * *Help* : `help`
+* *Statistics* : stats SPEED/DONE

@@ -279,13 +279,14 @@ Refer to the guide <<DevOps#, here>>.
 
 *Target user profile*:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of tasks
 * prefer desktop apps over other types
 * can type fast
 * prefers typing over mouse input
 * is reasonably comfortable using CLI apps
+* need motivation to get things done
 
-*Value proposition*: manage contacts faster than a typical mouse/GUI driven app
+*Value proposition*: We integrate a Pomodoro-Pet environment into a full fledged task manager. The pet system serves to gamify the act of doing tasks, thereby motivating users, and the Pomodoro helps users get into a regular work/rest cycle. This integrationcovers all aspects of productivity in line platform. It covers motivation, organising of tasks and also how to go about doing them. This all in one solution is seldom found in other applications which implement maybe 1 or 2 of these features.
 
 [appendix]
 == User Stories
@@ -297,33 +298,64 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |Priority |As a ... |I want to ... |So that I can...
 |`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
-|`* * *` |user |add a new person |
+|`* * *` |user |view all current ongoing tasks |manage my tasks and time
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |user |view all tasks I have completed |monitor my progress
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|`* * *` |user |able to edit my task description |make changes in the event something unexpected happens
 
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
+|`* * *` |user |add a task by specifying a task description only |record tasks that needs to be done.
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* * *` |user |add a task by specifying a task description and a reminder |record tasks that needs to be done by a specific period
+
+|`* * *` |user |be rewarded for completing my tasks |feel satisfied and motivated to perform
+
+|`* * *` |user |sort upcoming taks by date |filter out the latest/oldest tasks according to my needs
+
+|`* * *` |user |delete a task |remove tasks that I no longer care to track
+
+|`* * *` |user |utlise the pomodoro technique to break down my work into intervals |boost productivity and keep track of time
+
+|`* * *` |lazy user |reminder system |be on track to complete my tasks
+
+|`* * *` |lazy user |gamification |be incentivised to work on my tasks
+
+|`* * *` |pro user |navigate commands using shortcuts |save more time
+
+|`* *` |pro user |delete several tasks at once |save more time
+
+|`* *` |pro user |mark several tasks done at once |save more time
+
+|`* *` |user |be greeted by a cute mascot |feel happy and motivated to do work
+
+|`* *` |user |sort my tasks by difficulty/priority |manage my tasks
+
+|`* *` |user |keep track of the time spent on each task |check my progress
+
+|`* *` |user |see my pet grow and gain accessories because of my productivity |am more motivated to stay productive
+
+|`* *` |pro user |customise the rate at which I should do work |fit my workstyle better
+
+|`* *` |pro user |automate when my done tasks are cleared |customise when I want my tasks to be removed
+
+|`*` |user |customise my pet with different seasons |I am more entertained
+
 |=======================================================================
-
-_{More to be added}_
 
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is `BBProductive` and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete person
+=== Use case: Delete task
 
 *MSS*
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
+1.  User requests to list tasks
+2.  BBProductive shows a list of tasks
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  BBProductive deletes the task
 +
 Use case ends.
 
@@ -337,11 +369,43 @@ Use case ends.
 * 3a. The given index is invalid.
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 3a1. BBProductive shows an error message.
 +
 Use case resumes at step 2.
 
-_{More to be added}_
+=== Use case: Run task with Pomodoro
+
+*MSS*
+
+1.  User requests to run task with Pomodoro
+2.  User proceeds to do task
+3.  When Pomodoro timer ends, BBProductive prompts the user to continue for the next interval, or exit the Pomodoro with the task done/undone
+4.  User completes the task and request to mark the task as done
+5.  BBProductive marks the task as done
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The given index is invalid.
++
+** 2a1. BBProductive shows an error message.
+Use case ends.
+
+* 3a. User has not completed the task.
++
+[none]
+** 3a1. User continues the Pomodoro for the next interval.
++
+Use case resumes at step 3.
+
+* 3b. User has not completed the task but wants to take a break from completing the task.
++
+[none]
+** 3a1. User exits the Pomodoro without marking the task as done.
++
+Use case ends.
 
 [appendix]
 == Non Functional Requirements
@@ -349,6 +413,9 @@ _{More to be added}_
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
 .  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  Graphics should not be offensive to any culture in any way
+.  Product should function with CLI alone
+.  Product should be usable by people with no initial knowledge of Pomodoro
 
 _{More to be added}_
 
@@ -360,6 +427,15 @@ Windows, Linux, Unix, OS-X
 
 [[private-contact-detail]] Private contact detail::
 A contact detail that is not meant to be shared with others
+
+[[pomodoro] Pomodoro::
+A time management method developed by Francesco Cirillo. Traditionally, cycles of 25 minutes of work and 5 minutes of rest.
+
+[[task]] Task::
+A snippet of text specified by the user that can be tracked (done/time spent).
+
+[[pet]] Pet::
+A cute little companion whom the player can care for and accessorise with more tasks being done.
 
 [appendix]
 == Product Survey
