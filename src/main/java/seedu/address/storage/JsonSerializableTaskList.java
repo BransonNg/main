@@ -15,15 +15,15 @@ import seedu.address.model.task.Task;
 @JsonRootName(value = "tasklist")
 class JsonSerializableTaskList {
 
-    public static final String MESSAGE_DUPLICATE_PERSON =
-            "Tasks list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_TASK =
+            "Tasks list contains duplicate task(s).";
 
-    private final List<JsonAdaptedTask> persons = new ArrayList<>();
+    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
-    /** Constructs a {@code JsonSerializableTaskList} with the given persons. */
+    /** Constructs a {@code JsonSerializableTaskList} with the given tasks. */
     @JsonCreator
-    public JsonSerializableTaskList(@JsonProperty("persons") List<JsonAdaptedTask> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableTaskList(@JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
+        this.tasks.addAll(tasks);
     }
 
     /**
@@ -33,7 +33,7 @@ class JsonSerializableTaskList {
      *     JsonSerializableTaskList}.
      */
     public JsonSerializableTaskList(ReadOnlyTaskList source) {
-        persons.addAll(
+        tasks.addAll(
                 source.getTaskList()
                         .stream()
                         .map(JsonAdaptedTask::new)
@@ -47,10 +47,10 @@ class JsonSerializableTaskList {
      */
     public TaskList toModelType() throws IllegalValueException {
         TaskList taskList = new TaskList();
-        for (JsonAdaptedTask jsonAdaptedTask : persons) {
+        for (JsonAdaptedTask jsonAdaptedTask : tasks) {
             Task task = jsonAdaptedTask.toModelType();
             if (taskList.hasTask(task)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
             }
             taskList.addTask(task);
         }

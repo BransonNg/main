@@ -11,45 +11,46 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.ReadOnlyPet;
+import seedu.address.model.Pet;
 
 /** A class to access TaskList data stored as a json file on the hard disk. */
-public class JsonTaskStorage implements TaskStorage {
+public class JsonPetStorage implements PetStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonTaskStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonPetStorage.class);
 
     private Path filePath;
 
-    public JsonTaskStorage(Path filePath) {
+    public JsonPetStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getTaskListFilePath() {
+    public Path getPetFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyTaskList> readTaskList() throws DataConversionException {
-        return readTaskList(filePath);
+    public Optional<ReadOnlyPet> readPet() throws DataConversionException {
+        return readPet(filePath);
     }
 
     /**
-     * Similar to {@link #readTaskList()}.
+     * Similar to {@link #readPet()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyTaskList> readTaskList(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyPet> readPet(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableTaskList> jsonTaskList =
-                JsonUtil.readJsonFile(filePath, JsonSerializableTaskList.class);
-        if (!jsonTaskList.isPresent()) {
+        Optional<JsonAdaptedPet> jsonPet =
+                JsonUtil.readJsonFile(filePath, JsonAdaptedPet.class);
+        if (!jsonPet.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonTaskList.get().toModelType());
+            return Optional.of(jsonPet.get().toModelType()); // Returns pet read from json
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -57,20 +58,20 @@ public class JsonTaskStorage implements TaskStorage {
     }
 
     @Override
-    public void saveTaskList(ReadOnlyTaskList taskList) throws IOException {
-        saveTaskList(taskList, filePath);
+    public void savePet(Pet pet) throws IOException {
+        savePet(pet, filePath);
     }
 
     /**
-     * Similar to {@link #saveTaskList(ReadOnlyTaskList)}.
+     * Similar to {@link #savePet(ReadOnlyPet)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveTaskList(ReadOnlyTaskList taskList, Path filePath) throws IOException {
-        requireNonNull(taskList);
+    public void savePet(Pet pet, Path filePath) throws IOException {
+        requireNonNull(pet);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableTaskList(taskList), filePath);
+        JsonUtil.saveJsonFile(new JsonAdaptedPet(pet), filePath);
     }
 }

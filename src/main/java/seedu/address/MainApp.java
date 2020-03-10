@@ -19,13 +19,17 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskList;
+import seedu.address.model.Pet;
+import seedu.address.model.ReadOnlyPet;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.storage.JsonPetStorage;
 import seedu.address.storage.JsonTaskListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.TaskListStorage;
+import seedu.address.storage.PetStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -55,7 +59,9 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
-        storage = new StorageManager(taskListStorage, userPrefsStorage);
+        PetStorage petStorage = new JsonPetStorage(userPrefs.getPetFilePath());
+        // PomodoroStorage pomodoroStorage = new JsonTaskListStorage(userPrefs.getPetFilePath());
+        storage = new StorageManager(taskListStorage, petStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -75,7 +81,10 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyTaskList> taskListOptional;
+        Optional<ReadOnlyPet> petOptional;
         ReadOnlyTaskList initialData;
+        ReadOnlyPet initialPet;
+
         try {
             taskListOptional = storage.readTaskList();
             if (!taskListOptional.isPresent()) {
@@ -92,7 +101,24 @@ public class MainApp extends Application {
             initialData = new TaskList();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            petOptional = storage.readPet();
+            logger.info(petOptional.get().toString()); // DONE ok the pet is read from JSON
+            if (!petOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample TaskList");
+            }
+            initialPet = petOptional.orElse(new Pet());
+        } catch (DataConversionException e) {
+            logger.warning(
+                    "Data file not in the correct format. Will be starting with an empty TaskList");
+            initialPet = new Pet();
+        } catch (IOException e) {
+            logger.warning(
+                    "Problem while reading from the file. Will be starting with an empty Pet");
+            initialPet = new Pet();
+        }
+
+        return new ModelManager(initialData, initialPet, userPrefs);
     }
 
     private void initLogging(Config config) {

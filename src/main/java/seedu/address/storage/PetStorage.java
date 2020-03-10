@@ -4,35 +4,36 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.ReadOnlyPet;
+import seedu.address.model.Pet;
 
 /** Represents a storage for {@link seedu.address.model.TaskList}. */
 public interface PetStorage {
 
     /** Returns the file path of the data file. */
-    Path getTaskListFilePath();
+    Path getPetFilePath();
 
     /**
-     * Returns TaskList data as a {@link ReadOnlyTaskList}. Returns {@code Optional.empty()} if
+     * Returns TaskList data as a {@link ReadOnlyPet}. Returns {@code Optional.empty()} if
      * storage file is not found.
      *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyTaskList> readTaskList() throws DataConversionException, IOException;
+    Optional<ReadOnlyPet> readPet() throws DataConversionException, IOException;
 
-    /** @see #getTaskListFilePath() */
-    Optional<ReadOnlyTaskList> readTaskList(Path filePath)
+    /** @see #getPetFilePath() */
+    Optional<ReadOnlyPet> readPet(Path filePath)
             throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyTaskList} to the storage.
+     * Saves the given {@link ReadOnlyPet} to the storage.
      *
      * @param taskList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveTaskList(ReadOnlyTaskList taskList) throws IOException;
+    void savePet(Pet pet) throws IOException;
 
-    /** @see #saveTaskList(ReadOnlyTaskList) */
-    void saveTaskList(ReadOnlyTaskList taskList, Path filePath) throws IOException;
+    /** @see #savePet(Pet) */
+    void savePet(Pet pet, Path filePath) throws IOException;
 }

@@ -12,6 +12,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path taskListFilePath = Paths.get("data", "tasklist.json");
+    private Path petFilePath = Paths.get("data", "pet.json");
 
     /** Creates a {@code UserPrefs} with default values. */
     public UserPrefs() {}
@@ -40,6 +41,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     public Path getTaskListFilePath() {
         return taskListFilePath;
+    }
+
+    public Path getPetFilePath() {
+        return petFilePath;
     }
 
     public void setTaskListFilePath(Path taskListFilePath) {
