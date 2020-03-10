@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.Pet;
 import seedu.address.model.ReadOnlyPet;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;

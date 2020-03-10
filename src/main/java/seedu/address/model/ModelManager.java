@@ -11,7 +11,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
-import seedu.address.model.Pet;
 
 // TODO Set Pet attributes via ModelManager
 
@@ -38,10 +37,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(
-                new TaskList(),
-                new Pet(),
-                new UserPrefs()); 
+        this(new TaskList(), new Pet(), new UserPrefs());
     }
 
     // =========== UserPrefs
@@ -154,7 +150,7 @@ public class ModelManager implements Model {
                 && filteredTasks.equals(other.filteredTasks);
     }
 
-    //TODO Add a manager for pets
+    // TODO Add a manager for pets
 
     public ReadOnlyPet getPet() {
         return pet;

@@ -20,7 +20,7 @@ public class Pet implements ReadOnlyPet {
         this.name = source.getName();
     }
 
-    public Pet(){
+    public Pet() {
         this(DEFAULT_NAME, DEFAULT_EXP, DEFAULT_LEVEL);
     }
 
@@ -37,7 +37,7 @@ public class Pet implements ReadOnlyPet {
     public String getLevel() {
         return level;
     }
-    
+
     @Override
     public String getExp() {
         return exp;
