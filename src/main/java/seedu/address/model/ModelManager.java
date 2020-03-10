@@ -29,7 +29,7 @@ public class ModelManager implements Model {
         requireAllNonNull(taskList, userPrefs);
 
         logger.fine("Initializing with Task List: " + taskList + " and user prefs " + userPrefs);
-        
+
         this.taskList = new TaskList(taskList);
         this.pet = new Pet(pet); // initialize a pet as a model
         logger.info(String.format("Initializing with Pet: %s", this.pet.toString()));

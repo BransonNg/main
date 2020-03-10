@@ -1,7 +1,6 @@
 package seedu.address.model.task;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Task's address in the address book. Guarantees: immutable; is valid as declared in
