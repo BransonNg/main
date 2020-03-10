@@ -1,0 +1,41 @@
+{
+  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "persons": [
+    {
+      "name": "Buy Milk",
+      "priority": "1",
+      "description": "Lorem Ipsum description",
+      "done" : "N",
+      "tagged": [
+        "groceries"
+      ]
+    },
+    {
+      "name": "Buy shoes",
+      "priority": "2",
+      "description": "Lorem Ipsum description",
+      "done" : "N",
+      "tagged": [
+        "friends"
+      ]
+    },
+    {
+      "name": "Buy food",
+      "priority": "3",
+      "description": "Lorem Ipsum description",
+      "done": "N",
+      "tagged": [
+        "friends"
+      ]
+    },
+    {
+      "name": "Buy drinks",
+      "priority": "2",
+      "description": "Lorem Ipsum description",
+      "done" : "N",
+      "tagged": [
+        "friends"
+      ]
+    }
+  ]
+}

@@ -11,9 +11,9 @@ public class DescriptionTest {
         assertThrows(NullPointerException.class, () -> new Description(null));
     }
 
-    @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new Description(invalidAddress));
-    }
+    // @Test
+    // public void constructor_invalidAddress_throwsIllegalArgumentException() {
+    //     String invalidAddress = "";
+    //     assertThrows(IllegalArgumentException.class, () -> new Description(invalidAddress));
+    // }
 }

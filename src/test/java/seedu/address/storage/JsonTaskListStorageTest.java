@@ -14,8 +14,8 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.TaskList;
+import seedu.address.model.ReadOnlyTaskList;
 
 public class JsonTaskListStorageTest {
     private static final Path TEST_DATA_FOLDER =
@@ -28,7 +28,8 @@ public class JsonTaskListStorageTest {
         assertThrows(NullPointerException.class, () -> readTaskList(null));
     }
 
-    private java.util.Optional<ReadOnlyTaskList> readTaskList(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyTaskList> readTaskList(String filePath)
+            throws Exception {
         return new JsonTaskListStorage(Paths.get(filePath))
                 .readTaskList(addToTestDataPathIfNotNull(filePath));
     }
@@ -47,13 +48,15 @@ public class JsonTaskListStorageTest {
     @Test
     public void read_notJsonFormat_exceptionThrown() {
         assertThrows(
-                DataConversionException.class, () -> readTaskList("notJsonFormatTaskList.json"));
+                DataConversionException.class,
+                () -> readTaskList("notJsonFormatTaskList.json"));
     }
 
     @Test
     public void readTaskList_invalidPersonTaskList_throwDataConversionException() {
         assertThrows(
-                DataConversionException.class, () -> readTaskList("invalidPersonTaskList.json"));
+                DataConversionException.class,
+                () -> readTaskList("invalidTask.json"));
     }
 
     @Test
@@ -93,11 +96,11 @@ public class JsonTaskListStorageTest {
         assertThrows(NullPointerException.class, () -> saveTaskList(null, "SomeFile.json"));
     }
 
-    /** Saves {@code taskList} at the specified {@code filePath}. */
-    private void saveTaskList(ReadOnlyTaskList taskList, String filePath) {
+    /** Saves {@code TaskList} at the specified {@code filePath}. */
+    private void saveTaskList(ReadOnlyTaskList TaskList, String filePath) {
         try {
             new JsonTaskListStorage(Paths.get(filePath))
-                    .saveTaskList(taskList, addToTestDataPathIfNotNull(filePath));
+                    .saveTaskList(TaskList, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
