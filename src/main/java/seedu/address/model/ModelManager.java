@@ -11,6 +11,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
+import seedu.address.model.Pet;
 
 // TODO Set Pet attributes via ModelManager
 
@@ -19,17 +20,19 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final TaskList taskList;
+    private final Pet pet;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
 
     /** Initializes a ModelManager with the given taskList and userPrefs. */
-    public ModelManager(ReadOnlyTaskList taskList, ReadOnlyPet Pet, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTaskList taskList, ReadOnlyPet pet, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(taskList, userPrefs);
 
         logger.fine("Initializing with address book: " + taskList + " and user prefs " + userPrefs);
 
         this.taskList = new TaskList(taskList);
+        this.pet = new Pet(pet); // initialize a pet as a model
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
     }
@@ -38,7 +41,7 @@ public class ModelManager implements Model {
         this(
                 new TaskList(),
                 new Pet(),
-                new UserPrefs()); // TODO new Pet() sets default values as static values
+                new UserPrefs()); 
     }
 
     // =========== UserPrefs
@@ -149,5 +152,15 @@ public class ModelManager implements Model {
         return taskList.equals(other.taskList)
                 && userPrefs.equals(other.userPrefs)
                 && filteredTasks.equals(other.filteredTasks);
+    }
+
+    //TODO Add a manager for pets
+
+    public ReadOnlyPet getPet() {
+        return pet;
+    }
+
+    public void setPetName(String name) {
+        this.pet.setName(name);
     }
 }

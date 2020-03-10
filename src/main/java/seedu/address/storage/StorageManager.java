@@ -96,12 +96,12 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void savePet(Pet taskList) throws IOException {
+    public void savePet(ReadOnlyPet taskList) throws IOException {
         savePet(taskList, petStorage.getPetFilePath());
     }
 
     @Override
-    public void savePet(Pet taskList, Path filePath) throws IOException {
+    public void savePet(ReadOnlyPet taskList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         petStorage.savePet(taskList, filePath);
     }

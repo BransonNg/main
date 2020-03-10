@@ -31,8 +31,8 @@ public interface PetStorage {
      * @param taskList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void savePet(Pet pet) throws IOException;
+    void savePet(ReadOnlyPet pet) throws IOException;
 
     /** @see #savePet(Pet) */
-    void savePet(Pet pet, Path filePath) throws IOException;
+    void savePet(ReadOnlyPet pet, Path filePath) throws IOException;
 }

@@ -103,7 +103,6 @@ public class MainApp extends Application {
 
         try {
             petOptional = storage.readPet();
-            logger.info(petOptional.get().toString()); // DONE ok the pet is read from JSON
             if (!petOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample TaskList");
             }

@@ -27,10 +27,10 @@ class JsonAdaptedPet {
     }
 
     /** Converts a given {@code Task} into this class for Jackson use. */
-    public JsonAdaptedPet(Pet source) {
-        name = source.name;
-        exp = source.exp;
-        level = source.level;
+    public JsonAdaptedPet(ReadOnlyPet source) {
+        name = source.getName();
+        exp = source.getExp();
+        level = source.getLevel();
     }
 
     /**

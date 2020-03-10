@@ -57,7 +57,7 @@ public class JsonPetStorage implements PetStorage {
     }
 
     @Override
-    public void savePet(Pet pet) throws IOException {
+    public void savePet(ReadOnlyPet pet) throws IOException {
         savePet(pet, filePath);
     }
 
@@ -66,7 +66,8 @@ public class JsonPetStorage implements PetStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void savePet(Pet pet, Path filePath) throws IOException {
+    @Override
+    public void savePet(ReadOnlyPet pet, Path filePath) throws IOException {
         requireNonNull(pet);
         requireNonNull(filePath);
 

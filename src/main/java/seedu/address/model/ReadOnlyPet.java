@@ -1,5 +1,7 @@
 package seedu.address.model;
 
 public interface ReadOnlyPet {
-    public Pet getPet();
+    public String getName();
+    public String getLevel();
+    public String getExp();
 }
