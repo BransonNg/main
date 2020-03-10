@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyPet;
 import seedu.address.model.Pet;
+import seedu.address.model.ReadOnlyPet;
 
 /** Represents a storage for {@link seedu.address.model.TaskList}. */
 public interface PetStorage {
@@ -14,8 +14,8 @@ public interface PetStorage {
     Path getPetFilePath();
 
     /**
-     * Returns TaskList data as a {@link ReadOnlyPet}. Returns {@code Optional.empty()} if
-     * storage file is not found.
+     * Returns TaskList data as a {@link ReadOnlyPet}. Returns {@code Optional.empty()} if storage
+     * file is not found.
      *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
@@ -23,8 +23,7 @@ public interface PetStorage {
     Optional<ReadOnlyPet> readPet() throws DataConversionException, IOException;
 
     /** @see #getPetFilePath() */
-    Optional<ReadOnlyPet> readPet(Path filePath)
-            throws DataConversionException, IOException;
+    Optional<ReadOnlyPet> readPet(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyPet} to the storage.

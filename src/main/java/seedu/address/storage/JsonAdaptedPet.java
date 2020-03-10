@@ -4,9 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.ReadOnlyPet;
 import seedu.address.model.Pet;
-
+import seedu.address.model.ReadOnlyPet;
 
 @JsonRootName(value = "pet")
 class JsonAdaptedPet {
@@ -44,7 +43,7 @@ class JsonAdaptedPet {
         // TODO set up proper model for all attributes of the Pet
         // if (name == null) {
         //     throw new IllegalValueException(
-        //             String.format(MISSING_FIELD_MESSAGE_FORMAT, "name")); 
+        //             String.format(MISSING_FIELD_MESSAGE_FORMAT, "name"));
         // }
         // if (!Name.isValidName(name)) {
         //     throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
@@ -53,7 +52,7 @@ class JsonAdaptedPet {
 
         // if (exp == null) {
         //     throw new IllegalValueException(
-        //             String.format(MISSING_FIELD_MESSAGE_FORMAT, "exp")); 
+        //             String.format(MISSING_FIELD_MESSAGE_FORMAT, "exp"));
         // }
         // if (!exp.isValidexp(exp)) {
         //     throw new IllegalValueException(exp.MESSAGE_CONSTRAINTS);

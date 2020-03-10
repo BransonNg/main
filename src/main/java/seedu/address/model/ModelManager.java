@@ -11,10 +11,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
-import seedu.address.model.Pet;
-import seedu.address.model.ReadOnlyPet;
 
-//TODO Set Pet attributes via ModelManager
+// TODO Set Pet attributes via ModelManager
 
 /** Represents the in-memory model of the address book data. */
 public class ModelManager implements Model {
@@ -37,7 +35,10 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new TaskList(), new Pet(), new UserPrefs()); // TODO new Pet() sets default values as static values
+        this(
+                new TaskList(),
+                new Pet(),
+                new UserPrefs()); // TODO new Pet() sets default values as static values
     }
 
     // =========== UserPrefs

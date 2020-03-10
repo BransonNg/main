@@ -15,8 +15,7 @@ import seedu.address.model.task.Task;
 @JsonRootName(value = "tasklist")
 class JsonSerializableTaskList {
 
-    public static final String MESSAGE_DUPLICATE_TASK =
-            "Tasks list contains duplicate task(s).";
+    public static final String MESSAGE_DUPLICATE_TASK = "Tasks list contains duplicate task(s).";
 
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 

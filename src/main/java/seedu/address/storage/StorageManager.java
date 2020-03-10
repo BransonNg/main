@@ -6,9 +6,9 @@ import java.util.Optional;
 import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyTaskList;
-import seedu.address.model.ReadOnlyPet;
 import seedu.address.model.Pet;
+import seedu.address.model.ReadOnlyPet;
+import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -21,7 +21,10 @@ public class StorageManager implements Storage {
     private PetStorage petStorage;
 
     // NOTE these storage objects all correspond to Json-storagename, i.e. JsonTaskListStorage, ...
-    public StorageManager(TaskListStorage taskListStorage, PetStorage petStorage,  UserPrefsStorage userPrefsStorage) {
+    public StorageManager(
+            TaskListStorage taskListStorage,
+            PetStorage petStorage,
+            UserPrefsStorage userPrefsStorage) {
         super();
         this.taskListStorage = taskListStorage;
         this.petStorage = petStorage;
@@ -75,7 +78,7 @@ public class StorageManager implements Storage {
         taskListStorage.saveTaskList(taskList, filePath);
     }
     // ================ TaskList methods ==============================
-    @Override 
+    @Override
     public Path getPetFilePath() {
         return petStorage.getPetFilePath();
     }
@@ -89,7 +92,7 @@ public class StorageManager implements Storage {
     public Optional<ReadOnlyPet> readPet(Path filePath)
             throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return petStorage.readPet(filePath); 
+        return petStorage.readPet(filePath);
     }
 
     @Override
