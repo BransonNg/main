@@ -167,8 +167,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveTaskList(ReadOnlyTaskList taskList, Path filePath)
-                throws IOException {
+        public void saveTaskList(ReadOnlyTaskList taskList, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

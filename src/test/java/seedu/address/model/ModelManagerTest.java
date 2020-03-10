@@ -95,8 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        TaskList taskList =
-                new TaskListBuilder().withPerson(HOMEWORK10).withPerson(LAB_3).build();
+        TaskList taskList = new TaskListBuilder().withPerson(HOMEWORK10).withPerson(LAB_3).build();
         TaskList differentTaskList = new TaskList();
         UserPrefs userPrefs = new UserPrefs();
 

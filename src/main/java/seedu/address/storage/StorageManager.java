@@ -17,8 +17,7 @@ public class StorageManager implements Storage {
     private TaskListStorage taskListStorage;
     private UserPrefsStorage userPrefsStorage;
 
-    public StorageManager(
-            TaskListStorage taskListStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(TaskListStorage taskListStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.taskListStorage = taskListStorage;
         this.userPrefsStorage = userPrefsStorage;
@@ -49,8 +48,7 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyTaskList> readTaskList()
-            throws DataConversionException, IOException {
+    public Optional<ReadOnlyTaskList> readTaskList() throws DataConversionException, IOException {
         return readTaskList(taskListStorage.getTaskListFilePath());
     }
 

@@ -25,8 +25,7 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(taskList, userPrefs);
 
-        logger.fine(
-                "Initializing with address book: " + taskList + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + taskList + " and user prefs " + userPrefs);
 
         this.taskList = new TaskList(taskList);
         this.userPrefs = new UserPrefs(userPrefs);

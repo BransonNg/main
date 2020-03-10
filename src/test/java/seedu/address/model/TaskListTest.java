@@ -84,8 +84,7 @@ public class TaskListTest {
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(
-                UnsupportedOperationException.class, () -> taskList.getTaskList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> taskList.getTaskList().remove(0));
     }
 
     /** A stub ReadOnlyTaskList whose persons list can violate interface constraints. */

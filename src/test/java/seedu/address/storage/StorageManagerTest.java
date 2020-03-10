@@ -9,8 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.TaskList;
 import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -21,8 +21,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonTaskListStorage taskListStorage =
-                new JsonTaskListStorage(getTempFilePath("ab"));
+        JsonTaskListStorage taskListStorage = new JsonTaskListStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(taskListStorage, userPrefsStorage);
     }

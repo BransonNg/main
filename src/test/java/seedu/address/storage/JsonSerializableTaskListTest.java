@@ -25,8 +25,7 @@ public class JsonSerializableTaskListTest {
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
         JsonSerializableTaskList dataFromFile =
-                JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE, JsonSerializableTaskList.class)
-                        .get();
+                JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE, JsonSerializableTaskList.class).get();
         TaskList taskListFromFile = dataFromFile.toModelType();
         TaskList typicalPersonsTaskList = TypicalTasks.getTypicalTaskList();
         assertEquals(taskListFromFile, typicalPersonsTaskList);
@@ -42,8 +41,7 @@ public class JsonSerializableTaskListTest {
     @Test
     public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
         JsonSerializableTaskList dataFromFile =
-                JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE, JsonSerializableTaskList.class)
-                        .get();
+                JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE, JsonSerializableTaskList.class).get();
         assertThrows(
                 IllegalValueException.class,
                 JsonSerializableTaskList.MESSAGE_DUPLICATE_PERSON,

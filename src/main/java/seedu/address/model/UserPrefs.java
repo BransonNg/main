@@ -58,8 +58,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         UserPrefs o = (UserPrefs) other;
 
-        return guiSettings.equals(o.guiSettings)
-                && taskListFilePath.equals(o.taskListFilePath);
+        return guiSettings.equals(o.guiSettings) && taskListFilePath.equals(o.taskListFilePath);
     }
 
     @Override

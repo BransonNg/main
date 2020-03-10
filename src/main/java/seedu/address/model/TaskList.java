@@ -77,8 +77,7 @@ public class TaskList implements ReadOnlyTaskList {
     }
 
     /**
-     * Removes {@code key} from this {@code TaskList}. {@code key} must exist in the address
-     * book.
+     * Removes {@code key} from this {@code TaskList}. {@code key} must exist in the address book.
      */
     public void removeTask(Task key) {
         tasklist.remove(key);
