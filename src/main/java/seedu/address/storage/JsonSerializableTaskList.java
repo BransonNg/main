@@ -7,32 +7,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.TaskList;
+import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.task.Task;
 
-/** An Immutable AddressBook that is serializable to JSON format. */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+/** An Immutable TaskList that is serializable to JSON format. */
+@JsonRootName(value = "tasklist")
+class JsonSerializableTaskList {
 
     public static final String MESSAGE_DUPLICATE_PERSON =
             "Tasks list contains duplicate person(s).";
 
     private final List<JsonAdaptedTask> persons = new ArrayList<>();
 
-    /** Constructs a {@code JsonSerializableAddressBook} with the given persons. */
+    /** Constructs a {@code JsonSerializableTaskList} with the given persons. */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedTask> persons) {
+    public JsonSerializableTaskList(@JsonProperty("persons") List<JsonAdaptedTask> persons) {
         this.persons.addAll(persons);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyTaskList} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code
-     *     JsonSerializableAddressBook}.
+     *     JsonSerializableTaskList}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableTaskList(ReadOnlyTaskList source) {
         persons.addAll(
                 source.getTaskList()
                         .stream()
@@ -41,19 +41,19 @@ class JsonSerializableAddressBook {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code TaskList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public TaskList toModelType() throws IllegalValueException {
+        TaskList taskList = new TaskList();
         for (JsonAdaptedTask jsonAdaptedTask : persons) {
             Task task = jsonAdaptedTask.toModelType();
-            if (addressBook.hasTask(task)) {
+            if (taskList.hasTask(task)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addTask(task);
+            taskList.addTask(task);
         }
-        return addressBook;
+        return taskList;
     }
 }

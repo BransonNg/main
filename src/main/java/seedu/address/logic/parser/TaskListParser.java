@@ -18,7 +18,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /** Parses user input. */
-public class AddressBookParser {
+public class TaskListParser {
 
     /** Used for initial separation of command word and args. */
     private static final Pattern BASIC_COMMAND_FORMAT =
