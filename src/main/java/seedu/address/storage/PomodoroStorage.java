@@ -9,13 +9,11 @@ import seedu.address.model.ReadOnlyPomodoro;
 public interface PomodoroStorage {
 
     /**
-     * Returns TaskList data as a {@link ReadOnlyTaskList}. Returns
-     * {@code Optional.empty()} if storage file is not found.
+     * Returns TaskList data as a {@link ReadOnlyTaskList}. Returns {@code Optional.empty()} if
+     * storage file is not found.
      *
-     * @throws DataConversionException if the data in storage is not in the expected
-     *                                 format.
-     * @throws IOException             if there was any problem when reading from
-     *                                 the storage.
+     * @throws DataConversionException if the data in storage is not in the expected format.
+     * @throws IOException if there was any problem when reading from the storage.
      */
     Optional<ReadOnlyPomodoro> readPomodoro() throws DataConversionException, IOException;
 

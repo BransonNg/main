@@ -9,6 +9,8 @@ public interface ReadOnlyUserPrefs {
     GuiSettings getGuiSettings();
 
     Path getTaskListFilePath();
+
     Path getPetFilePath();
+
     Path getPomodoroFilePath();
 }

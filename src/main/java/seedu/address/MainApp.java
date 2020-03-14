@@ -30,10 +30,10 @@ import seedu.address.storage.JsonPomodoroStorage;
 import seedu.address.storage.JsonTaskListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.PetStorage;
+import seedu.address.storage.PomodoroStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.TaskListStorage;
-import seedu.address.storage.PomodoroStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -65,7 +65,8 @@ public class MainApp extends Application {
         TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
         PetStorage petStorage = new JsonPetStorage(userPrefs.getPetFilePath());
         PomodoroStorage pomodoroStorage = new JsonPomodoroStorage(userPrefs.getPomodoroFilePath());
-        storage = new StorageManager(taskListStorage, petStorage, pomodoroStorage, userPrefsStorage);
+        storage =
+                new StorageManager(taskListStorage, petStorage, pomodoroStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -138,7 +139,6 @@ public class MainApp extends Application {
                     "Problem while reading from the file. Will be starting with an empty Pomodoro");
             initialPomodoro = new Pomodoro();
         }
-
 
         return new ModelManager(initialData, initialPet, initialPomodoro, userPrefs);
     }

@@ -25,7 +25,11 @@ public class ModelManager implements Model {
     private final FilteredList<Task> filteredTasks;
 
     /** Initializes a ModelManager with the given taskList and userPrefs. */
-    public ModelManager(ReadOnlyTaskList taskList, ReadOnlyPet pet, ReadOnlyPomodoro pomodoro, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(
+            ReadOnlyTaskList taskList,
+            ReadOnlyPet pet,
+            ReadOnlyPomodoro pomodoro,
+            ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(taskList, userPrefs);
 

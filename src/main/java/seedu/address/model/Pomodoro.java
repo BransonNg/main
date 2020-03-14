@@ -1,7 +1,5 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
-
 import seedu.address.model.task.Task;
 
 public class Pomodoro implements ReadOnlyPomodoro {
@@ -13,11 +11,11 @@ public class Pomodoro implements ReadOnlyPomodoro {
     public Task runningTask;
 
     public Pomodoro(String defaultTime, String timeLeft, Task runningTask) {
-        if (defaultTime == null || !defaultTime.matches(TIME_REGEX) ) {
+        if (defaultTime == null || !defaultTime.matches(TIME_REGEX)) {
             defaultTime = DEFAULT_TIME;
         }
 
-        if (timeLeft == null || !timeLeft.matches(TIME_REGEX) ) {
+        if (timeLeft == null || !timeLeft.matches(TIME_REGEX)) {
             timeLeft = DEFAULT_TIME;
         }
 

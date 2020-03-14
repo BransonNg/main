@@ -37,7 +37,8 @@ public class JsonPomodoroStorage implements PomodoroStorage {
     public Optional<ReadOnlyPomodoro> readPomodoro() throws DataConversionException {
         requireNonNull(this.filePath);
 
-        Optional<JsonAdaptedPomodoro> jsonPomodoro = JsonUtil.readJsonFile(this.filePath, JsonAdaptedPomodoro.class);
+        Optional<JsonAdaptedPomodoro> jsonPomodoro =
+                JsonUtil.readJsonFile(this.filePath, JsonAdaptedPomodoro.class);
         if (!jsonPomodoro.isPresent()) {
             return Optional.empty();
         }

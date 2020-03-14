@@ -108,7 +108,7 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write pet data: " + filePath);
         petStorage.savePet(pet, filePath);
     }
-    
+
     // ================ Pomodoro methods ==============================
     @Override
     public Optional<ReadOnlyPomodoro> readPomodoro() throws DataConversionException, IOException {
@@ -120,5 +120,4 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write pomodoro data: ");
         pomodoroStorage.savePomodoro(pomodoro);
     }
-    
 }

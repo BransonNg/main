@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.ReadOnlyPomodoro;
 import seedu.address.model.Pomodoro;
+import seedu.address.model.ReadOnlyPomodoro;
 
 @JsonRootName(value = "pomodoro")
 class JsonAdaptedPomodoro {
@@ -44,8 +44,7 @@ class JsonAdaptedPomodoro {
      *     person.
      */
     public ReadOnlyPomodoro toModelType() throws IllegalValueException {
-        if (runningTask == null) 
-            return new Pomodoro(defaultTime, timeLeft, null);
+        if (runningTask == null) return new Pomodoro(defaultTime, timeLeft, null);
         return new Pomodoro(defaultTime, timeLeft, runningTask.toModelType());
     }
 }
