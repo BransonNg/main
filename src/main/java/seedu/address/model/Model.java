@@ -66,4 +66,8 @@ public interface Model {
     ReadOnlyPet getPet();
 
     void setPetName(String name);
+
+    ReadOnlyPomodoro getPomodoro();
+
+    void setPomodoroTask(Task task);
 }

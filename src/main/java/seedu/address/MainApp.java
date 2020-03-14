@@ -17,19 +17,23 @@ import seedu.address.logic.LogicManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Pet;
+import seedu.address.model.Pomodoro;
 import seedu.address.model.ReadOnlyPet;
+import seedu.address.model.ReadOnlyPomodoro;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.JsonPetStorage;
+import seedu.address.storage.JsonPomodoroStorage;
 import seedu.address.storage.JsonTaskListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.PetStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.TaskListStorage;
+import seedu.address.storage.PomodoroStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -60,8 +64,8 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
         PetStorage petStorage = new JsonPetStorage(userPrefs.getPetFilePath());
-        PomodoroStorage pomodoroStorage = new JsonTimerStorage(userPrefs.getPetFilePath());
-        storage = new StorageManager(taskListStorage, petStorage, userPrefsStorage);
+        PomodoroStorage pomodoroStorage = new JsonPomodoroStorage(userPrefs.getPomodoroFilePath());
+        storage = new StorageManager(taskListStorage, petStorage, pomodoroStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -82,8 +86,10 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyTaskList> taskListOptional;
         Optional<ReadOnlyPet> petOptional;
+        Optional<ReadOnlyPomodoro> pomodoroOptional;
         ReadOnlyTaskList initialData;
         ReadOnlyPet initialPet;
+        ReadOnlyPomodoro initialPomodoro;
 
         try {
             taskListOptional = storage.readTaskList();
@@ -104,12 +110,12 @@ public class MainApp extends Application {
         try {
             petOptional = storage.readPet();
             if (!petOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample TaskList");
+                logger.info("Data file not found. Will be starting with a sample Pet");
             }
             initialPet = petOptional.orElse(new Pet());
         } catch (DataConversionException e) {
             logger.warning(
-                    "Data file not in the correct format. Will be starting with an empty TaskList");
+                    "Data file not in the correct format. Will be starting with an empty Pet");
             initialPet = new Pet();
         } catch (IOException e) {
             logger.warning(
@@ -117,7 +123,24 @@ public class MainApp extends Application {
             initialPet = new Pet();
         }
 
-        return new ModelManager(initialData, initialPet, userPrefs);
+        try {
+            pomodoroOptional = storage.readPomodoro();
+            if (!pomodoroOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample Pomodoro");
+            }
+            initialPomodoro = pomodoroOptional.orElse(new Pomodoro());
+        } catch (DataConversionException e) {
+            logger.warning(
+                    "Data file not in the correct format. Will be starting with an empty Pomodoro");
+            initialPomodoro = new Pomodoro();
+        } catch (IOException e) {
+            logger.warning(
+                    "Problem while reading from the file. Will be starting with an empty Pomodoro");
+            initialPomodoro = new Pomodoro();
+        }
+
+
+        return new ModelManager(initialData, initialPet, initialPomodoro, userPrefs);
     }
 
     private void initLogging(Config config) {

@@ -1,50 +1,62 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.model.task.Task;
 
 public class Pomodoro implements ReadOnlyPomodoro {
-    private static final String DEFAULT_TIME= "25.0";
-    public String time;
+    private static final String DEFAULT_TIME = "25.0";
+    public static final String TIME_REGEX = "\\d+.?\\d*";
+
+    public String defaultTime;
     public String timeLeft;
     public Task runningTask;
 
-    public Pomodoro(String name, String exp, String level) {
-        this.exp = exp;
-        this.level = level;
-        this.name = name;
+    public Pomodoro(String defaultTime, String timeLeft, Task runningTask) {
+        if (defaultTime == null || !defaultTime.matches(TIME_REGEX) ) {
+            defaultTime = DEFAULT_TIME;
+        }
+
+        if (timeLeft == null || !timeLeft.matches(TIME_REGEX) ) {
+            timeLeft = DEFAULT_TIME;
+        }
+
+        this.defaultTime = defaultTime;
+        this.timeLeft = timeLeft;
+        this.runningTask = runningTask;
     }
 
     public Pomodoro(ReadOnlyPomodoro source) {
-        this.exp = source.getExp();
-        this.level = source.getLevel();
-        this.name = source.getName();
+        this(source.getDefaultTime(), source.getTimeLeft(), source.getRunningTask());
     }
 
     public Pomodoro() {
-        this(DEFAULT_NAME, DEFAULT_EXP, DEFAULT_LEVEL);
+        this(DEFAULT_TIME, DEFAULT_TIME, null);
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String getName() {
-        return name;
+    public void setTask(Task runningTask) {
+        this.runningTask = runningTask;
     }
 
     @Override
-    public String getLevel() {
-        return level;
+    public Task getRunningTask() {
+        return this.runningTask;
     }
 
     @Override
-    public String getExp() {
-        return exp;
+    public String getDefaultTime() {
+        return this.defaultTime;
+    }
+
+    @Override
+    public String getTimeLeft() {
+        return this.timeLeft;
     }
 
     @Override
     public String toString() {
-        return String.format("Hi I'm pet %s! my Exp is %s and my level is %s", name, exp, level);
+        return String.format(
+                "Hi running task is: %s! my timeleft is %s and my default time is %s",
+                runningTask == null ? "No tasks!" : runningTask.toString(), timeLeft, defaultTime);
     }
 }

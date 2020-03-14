@@ -20,11 +20,12 @@ public class ModelManager implements Model {
 
     private final TaskList taskList;
     private final Pet pet;
+    private final Pomodoro pomodoro;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
 
     /** Initializes a ModelManager with the given taskList and userPrefs. */
-    public ModelManager(ReadOnlyTaskList taskList, ReadOnlyPet pet, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTaskList taskList, ReadOnlyPet pet, ReadOnlyPomodoro pomodoro, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(taskList, userPrefs);
 
@@ -32,14 +33,16 @@ public class ModelManager implements Model {
 
         this.taskList = new TaskList(taskList);
         this.pet = new Pet(pet); // initialize a pet as a model
+        this.pomodoro = new Pomodoro(pomodoro); // initialize a pet as a model
         logger.info(String.format("Initializing with Pet: %s", this.pet.toString()));
+        logger.info(String.format("Initializing with Pomodoro: %s", this.pomodoro.toString()));
 
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
     }
 
     public ModelManager() {
-        this(new TaskList(), new Pet(), new UserPrefs());
+        this(new TaskList(), new Pet(), new Pomodoro(), new UserPrefs());
     }
 
     // =========== UserPrefs
@@ -160,5 +163,14 @@ public class ModelManager implements Model {
 
     public void setPetName(String name) {
         this.pet.setName(name);
+    }
+
+    // TODO add a manager for pomodoro
+    public ReadOnlyPomodoro getPomodoro() {
+        return pomodoro;
+    }
+
+    public void setPomodoroTask(Task task) {
+        this.pomodoro.setTask(task);
     }
 }

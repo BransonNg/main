@@ -4,33 +4,37 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Timer;
-import seedu.address.model.ReadOnlyTimer;
+import seedu.address.model.ReadOnlyPomodoro;
+import seedu.address.model.Pomodoro;
 
 @JsonRootName(value = "pomodoro")
 class JsonAdaptedPomodoro {
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Pet's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Pomodoro's %s field is missing!";
 
-    private final String name;
-    private final String exp;
-    private final String level;
+    private String defaultTime;
+    private String timeLeft;
+    private JsonAdaptedTask runningTask;
 
     /** Constructs a {@code JsonAdaptedTask} with the given person details. */
     @JsonCreator
     public JsonAdaptedPomodoro(
-            @JsonProperty("name") String name,
-            @JsonProperty("exp") String exp,
-            @JsonProperty("level") String level) {
-        this.name = name;
-        this.exp = exp;
-        this.level = level;
+            @JsonProperty("defaultTime") String defaultTime,
+            @JsonProperty("timeLeft") String timeLeft,
+            @JsonProperty("runningTask") JsonAdaptedTask runningTask) {
+        this.defaultTime = defaultTime;
+        this.timeLeft = timeLeft;
+        this.runningTask = runningTask;
     }
 
     /** Converts a given {@code Task} into this class for Jackson use. */
-    public JsonAdaptedPet(ReadOnlyPet source) {
-        name = source.getName();
-        exp = source.getExp();
-        level = source.getLevel();
+    public JsonAdaptedPomodoro(ReadOnlyPomodoro source) {
+        this.defaultTime = source.getDefaultTime();
+        this.timeLeft = source.getTimeLeft();
+        if (source.getRunningTask() == null) {
+            this.runningTask = null;
+        } else {
+            this.runningTask = new JsonAdaptedTask(source.getRunningTask());
+        }
     }
 
     /**
@@ -39,8 +43,9 @@ class JsonAdaptedPomodoro {
      * @throws IllegalValueException if there were any data constraints violated in the adapted
      *     person.
      */
-    public ReadOnlyPet toModelType() throws IllegalValueException {
-        
-        return new Pet(name, exp, level);
+    public ReadOnlyPomodoro toModelType() throws IllegalValueException {
+        if (runningTask == null) 
+            return new Pomodoro(defaultTime, timeLeft, null);
+        return new Pomodoro(defaultTime, timeLeft, runningTask.toModelType());
     }
 }

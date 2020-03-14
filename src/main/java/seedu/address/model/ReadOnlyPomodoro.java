@@ -1,7 +1,9 @@
 package seedu.address.model;
 
+import seedu.address.model.task.Task;
+
 public interface ReadOnlyPomodoro {
-    public String getRunningTask();
+    public Task getRunningTask();
 
     public String getDefaultTime();
 
