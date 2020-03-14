@@ -2,7 +2,7 @@
   "persons": [
     {
       "name": "Buy Milk",
-      "priority": "9482424",
+      "priority": "important",
       "description": "Lorem ipsum description"
     }
   ]

@@ -1,9 +1,9 @@
 {
   "persons": [
     {
-      "name": "Person with invalid name field: Ha!ns Mu@ster",
-      "priority": "9482424",
-      "address": "4th street"
+      "name": "Task With Invalid Priority Field",
+      "priority": "948asdf2424",
+      "description": "4th street"
     }
   ]
 }

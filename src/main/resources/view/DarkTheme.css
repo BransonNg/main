@@ -4,9 +4,8 @@
 }
 
 .label {
-    -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #555555;
+    -fx-text-fill: #fb7a7a;
     -fx-opacity: 0.9;
 }
 

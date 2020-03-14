@@ -14,9 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_TASK1;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_TASK2;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HELP;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MA1521;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_TASK2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TASK2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_TASK2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HELP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MA1521;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -117,30 +115,6 @@ public class AddCommandParserTest {
         assertParseFailure(
                 parser,
                 VALID_NAME_TASK2 + PRIORITY_DESC_TASK2 + DESCRIPTION_DESC_TASK2,
-                expectedMessage);
-
-        // missing priority prefix
-        assertParseFailure(
-                parser,
-                NAME_DESC_TASK2 + VALID_PRIORITY_TASK2 + DESCRIPTION_DESC_TASK2,
-                expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(
-                parser,
-                NAME_DESC_TASK2 + PRIORITY_DESC_TASK2 + DESCRIPTION_DESC_TASK2,
-                expectedMessage);
-
-        // missing address prefix
-        assertParseFailure(
-                parser,
-                NAME_DESC_TASK2 + PRIORITY_DESC_TASK2 + VALID_DESCRIPTION_TASK2,
-                expectedMessage);
-
-        // all prefixes missing
-        assertParseFailure(
-                parser,
-                VALID_NAME_TASK2 + VALID_PRIORITY_TASK2 + VALID_DESCRIPTION_TASK2,
                 expectedMessage);
     }
 

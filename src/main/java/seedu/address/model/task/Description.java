@@ -4,25 +4,19 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Task's address in the address book. Guarantees: immutable; is valid as declared in
- * {@link #isValidAddress(String)}
+ * {@link #isValidDescription(String)}
  */
 public class Description {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Description can take any values, and it should not be blank";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code Description}.
      *
-     * @param address A valid address.
+     * @param description A valid description.
      */
     public Description(String description) {
         // requireNonNull(description);
@@ -33,7 +27,6 @@ public class Description {
     /** Returns true if a given string is a valid description. */
     public static boolean isValidDescription(String test) {
         return true;
-        // return test.matches(VALIDATION_REGEX);
     }
 
     @Override

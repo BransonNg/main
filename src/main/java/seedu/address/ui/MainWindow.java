@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.nio.file.Paths;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,6 +34,8 @@ public class MainWindow extends UiPart<Stage> {
     private TaskListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PetDisplay petDisplay;
+    private PomodoroDisplay pomodoroDisplay;
 
     @FXML private StackPane commandBoxPlaceholder;
 
@@ -43,6 +46,10 @@ public class MainWindow extends UiPart<Stage> {
     @FXML private StackPane resultDisplayPlaceholder;
 
     @FXML private StackPane statusbarPlaceholder;
+
+    @FXML private StackPane petPlaceholder;
+
+    @FXML private StackPane pomodoroPlaceholder;
 
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
@@ -107,6 +114,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new TaskListPanel(logic.getFilteredTaskList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        petDisplay = new PetDisplay(Paths.get("images", "pet", "cyclops.png")); // hardcode: swap images here
+        petPlaceholder.getChildren().add(petDisplay.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -115,6 +125,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        pomodoroDisplay = new PomodoroDisplay("No task in progress.", "25:00");
+        pomodoroPlaceholder.getChildren().add(pomodoroDisplay.getRoot());
     }
 
     /** Sets the default size based on {@code guiSettings}. */

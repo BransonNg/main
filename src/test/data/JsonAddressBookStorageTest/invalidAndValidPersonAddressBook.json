@@ -1,14 +1,14 @@
 {
   "persons": [
     {
-      "name": "Valid Task",
-      "priority": "9482424",
-      "address": "4th street"
-    },
-    {
       "name": "Task With Invalid Priority Field",
       "priority": "948asdf2424",
-      "address": "4th street"
+      "description": "4th street"
+    },
+    {
+      "name": "Valid Task",
+      "priority": "1",
+      "description": "4th street"
     }
   ]
 }
