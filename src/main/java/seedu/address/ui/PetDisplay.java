@@ -1,15 +1,11 @@
 package seedu.address.ui;
 
-import java.io.File;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Comparator;
 import javafx.fxml.FXML;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 
 /** An UI component that displays image of a Pet {@code Pet}. */
 public class PetDisplay extends UiPart<Region> {
@@ -28,7 +24,8 @@ public class PetDisplay extends UiPart<Region> {
         // set up image
         Image image = new Image(String.valueOf(filePath));
 
-        //javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource(filepath).toExternalForm());
+        // javafx.scene.image.Image image = new
+        // javafx.scene.image.Image(getClass().getResource(filepath).toExternalForm());
         pic.setImage(image);
     }
 
@@ -48,5 +45,4 @@ public class PetDisplay extends UiPart<Region> {
         PetDisplay card = (PetDisplay) other;
         return pic.getImage().equals(card.pic.getImage());
     }
-
 }
