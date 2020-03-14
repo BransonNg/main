@@ -60,7 +60,7 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
         PetStorage petStorage = new JsonPetStorage(userPrefs.getPetFilePath());
-        // PomodoroStorage pomodoroStorage = new JsonTaskListStorage(userPrefs.getPetFilePath());
+        PomodoroStorage pomodoroStorage = new JsonTimerStorage(userPrefs.getPetFilePath());
         storage = new StorageManager(taskListStorage, petStorage, userPrefsStorage);
 
         initLogging(config);

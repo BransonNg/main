@@ -27,7 +27,12 @@ public class PetDisplay extends UiPart<Region> {
     @FXML private ImageView accessoryPic;
     @FXML private Label levelView;
 
-    public PetDisplay(Path petFilepath, String expBarText, Path expBarFilepath, Path accessoryFilepath, String levelText) {
+    public PetDisplay(
+            Path petFilepath,
+            String expBarText,
+            Path expBarFilepath,
+            Path accessoryFilepath,
+            String levelText) {
         super(FXML);
         this.petFilepath = petFilepath;
         this.expBarFilepath = expBarFilepath;

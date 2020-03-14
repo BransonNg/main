@@ -7,7 +7,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyTaskList;
 
 /** Represents a storage for {@link seedu.address.model.TaskList}. */
-public interface TimerStorage {
+public interface PomodoroStorage {
 
     /**
      * Returns TaskList data as a {@link ReadOnlyTaskList}. Returns {@code Optional.empty()} if
