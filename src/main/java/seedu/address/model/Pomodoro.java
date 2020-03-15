@@ -8,7 +8,7 @@ public class Pomodoro implements ReadOnlyPomodoro {
 
     public String defaultTime;
     public String timeLeft;
-    public Task runningTask;
+    public Task runningTask; // runningTask will be null if not running tasks
 
     public Pomodoro(String defaultTime, String timeLeft, Task runningTask) {
         if (defaultTime == null || !defaultTime.matches(TIME_REGEX)) {
@@ -16,7 +16,7 @@ public class Pomodoro implements ReadOnlyPomodoro {
         }
 
         if (timeLeft == null || !timeLeft.matches(TIME_REGEX)) {
-            timeLeft = DEFAULT_TIME;
+            timeLeft = defaultTime;
         }
 
         this.defaultTime = defaultTime;
