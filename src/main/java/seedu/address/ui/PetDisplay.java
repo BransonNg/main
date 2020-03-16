@@ -20,20 +20,18 @@ public class PetDisplay extends UiPart<Region> {
     public String expBarText; // mutable
     public String levelText; // mutable
 
-    @FXML
-    private VBox petPane;
-    @FXML
-    private ImageView petPic;
-    @FXML
-    private Label expBarView;
-    @FXML
-    private ImageView expBarPic;
-    @FXML
-    private ImageView accessoryPic;
-    @FXML
-    private Label levelView;
+    @FXML private VBox petPane;
+    @FXML private ImageView petPic;
+    @FXML private Label expBarView;
+    @FXML private ImageView expBarPic;
+    @FXML private ImageView accessoryPic;
+    @FXML private Label levelView;
 
-    public PetDisplay(Path petFilepath, String expBarText, Path expBarFilepath, Path accessoryFilepath,
+    public PetDisplay(
+            Path petFilepath,
+            String expBarText,
+            Path expBarFilepath,
+            Path accessoryFilepath,
             String levelText) {
         super(FXML);
         this.petFilepath = petFilepath;
@@ -60,7 +58,11 @@ public class PetDisplay extends UiPart<Region> {
         expBarPic.setImage(expBarImage);
     }
 
-    public void update(Path petFilepath, String expBarText, Path expBarFilepath, Path accessoryFilepath,
+    public void update(
+            Path petFilepath,
+            String expBarText,
+            Path expBarFilepath,
+            Path accessoryFilepath,
             String levelText) {
 
         this.petFilepath = petFilepath;

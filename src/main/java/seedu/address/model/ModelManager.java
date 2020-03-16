@@ -129,8 +129,8 @@ public class ModelManager implements Model {
     // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Task} backed by the
-     * internal list of {@code versionedTaskList}
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedTaskList}
      */
     @Override
     public ObservableList<Task> getFilteredTaskList() {
@@ -157,7 +157,8 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return taskList.equals(other.taskList) && userPrefs.equals(other.userPrefs)
+        return taskList.equals(other.taskList)
+                && userPrefs.equals(other.userPrefs)
                 && filteredTasks.equals(other.filteredTasks);
     }
 
@@ -177,22 +178,22 @@ public class ModelManager implements Model {
         return pomodoro;
     }
 
-    
     @Override
     public PetDisplayHandler getPetDisplayHandler() {
         return petDisplayHandler;
     }
-    
+
     @Override
     public void updatePetDisplayHandler() {
         this.petDisplayHandler.updatePetDisplay();
     }
 
     // ============================ Pomodoro Manager
-    
+
     public void setPomodoroTask(Task task) {
         this.pomodoro.setTask(task);
     }
+
     @Override
     public void incrementExp() {
         this.pet.incrementExp();

@@ -1,9 +1,8 @@
 package seedu.address.ui;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import seedu.address.model.ReadOnlyPet;
-
-import java.nio.file.Path;
 
 public class PetDisplayHandler {
     private ReadOnlyPet pet;
@@ -17,8 +16,13 @@ public class PetDisplayHandler {
     public PetDisplayHandler(ReadOnlyPet pet) {
         this.pet = pet;
         updatePetDisplayHandler();
-        petDisplay = new PetDisplay(this.petFilepath, this.expBarText, this.expBarFilepath, this.accessoryFilepath,
-                this.levelText);
+        petDisplay =
+                new PetDisplay(
+                        this.petFilepath,
+                        this.expBarText,
+                        this.expBarFilepath,
+                        this.accessoryFilepath,
+                        this.levelText);
     }
 
     public void updatePetDisplayHandler() {
@@ -39,49 +43,49 @@ public class PetDisplayHandler {
         System.out.println("PetDisplayHandler: expBarPerc:" + expBarPerc);
 
         switch (expBarPerc) {
-        case 0:
-            this.expBarFilepath = Paths.get("images", "pet", "ProgressBar0%.png");
-            break;
+            case 0:
+                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar0%.png");
+                break;
 
-        case 1:
-            this.expBarFilepath = Paths.get("images", "pet", "ProgressBar10%.png");
-            break;
+            case 1:
+                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar10%.png");
+                break;
 
-        case 2:
-            this.expBarFilepath = Paths.get("images", "pet", "ProgressBar20%.png");
-            break;
+            case 2:
+                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar20%.png");
+                break;
 
-        case 3:
-            this.expBarFilepath = Paths.get("images", "pet", "ProgressBar30%.png");
-            break;
+            case 3:
+                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar30%.png");
+                break;
 
-        case 4:
-            this.expBarFilepath = Paths.get("images", "pet", "ProgressBar40%.png");
-            break;
+            case 4:
+                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar40%.png");
+                break;
 
-        case 5:
-            this.expBarFilepath = Paths.get("images", "pet", "ProgressBar50%.png");
-            break;
+            case 5:
+                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar50%.png");
+                break;
 
-        case 6:
-            this.expBarFilepath = Paths.get("images", "pet", "ProgressBar60%.png");
-            break;
+            case 6:
+                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar60%.png");
+                break;
 
-        case 7:
-            this.expBarFilepath = Paths.get("images", "pet", "ProgressBar70%.png");
-            break;
+            case 7:
+                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar70%.png");
+                break;
 
-        case 8:
-            this.expBarFilepath = Paths.get("images", "pet", "ProgressBar80%.png");
-            break;
+            case 8:
+                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar80%.png");
+                break;
 
-        case 9:
-            this.expBarFilepath = Paths.get("images", "pet", "ProgressBar90%.png");
-            break;
+            case 9:
+                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar90%.png");
+                break;
 
-        case 10:
-            this.expBarFilepath = Paths.get("images", "pet", "ProgressBar100%.png");
-            break;
+            case 10:
+                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar100%.png");
+                break;
         }
 
         this.accessoryFilepath = null;
@@ -89,7 +93,11 @@ public class PetDisplayHandler {
 
     public void updatePetDisplay() {
         updatePetDisplayHandler();
-        petDisplay.update(this.petFilepath, this.expBarText, this.expBarFilepath, this.accessoryFilepath,
+        petDisplay.update(
+                this.petFilepath,
+                this.expBarText,
+                this.expBarFilepath,
+                this.accessoryFilepath,
                 this.levelText);
     }
 
