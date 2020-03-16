@@ -64,7 +64,7 @@ public class AddCommand extends Command {
         model.addTask(toAdd);
         // ^ Sample use of model to adjust objects
         // model.setPetName("Jeff");
-        model.setPomodoroTask(toAdd);
+        // model.setPomodoroTask(toAdd);
 
         // DONE Setting values on model in recorded in storage and reflected in json
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
