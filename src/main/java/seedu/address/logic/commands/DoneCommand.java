@@ -15,18 +15,16 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 
-/** Deletes a person identified using it's displayed index from the address book. */
+/**
+ * Deletes a person identified using it's displayed index from the address book.
+ */
 public class DoneCommand extends Command {
 
     public static final String COMMAND_WORD = "done";
 
-    public static final String MESSAGE_USAGE =
-            COMMAND_WORD
-                    + ": Marks the task identified by the index number used in the displayed task list as done.\n"
-                    + "Parameters: 1-INDEXed (must be a positive integer)\n"
-                    + "Example: "
-                    + COMMAND_WORD
-                    + " 1";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Marks the task identified by the index number used in the displayed task list as done.\n"
+            + "Parameters: 1-INDEXed (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DONE_TASK_SUCCESS = "Done Task(s): ";
 
@@ -48,9 +46,14 @@ public class DoneCommand extends Command {
             }
             // Person person = lastShownList.get(targetIndex.getZeroBased());
             Task taskToEdit = lastShownList.get(targetIndex.getZeroBased());
+            if (taskToEdit.getDone().isDone) {
+                throw new CommandException(Messages.MESSAGE_INVALID_TASK_TO_BE_DONED);
+            }
             Task editedTask = createDoneTask(taskToEdit);
             tasksDone.append(String.format("%n%s", editedTask));
             model.setTask(taskToEdit, editedTask);
+            // increment Pet EXP after completing a task
+            model.incrementExp();
         }
         // model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
@@ -65,8 +68,7 @@ public class DoneCommand extends Command {
         Description updatedDescription = taskToEdit.getDescription();
         Set<Tag> updatedTags = taskToEdit.getTags();
 
-        return new Task(
-                updatedName, updatedPriority, updatedDescription, new Done("Y"), updatedTags);
+        return new Task(updatedName, updatedPriority, updatedDescription, new Done("Y"), updatedTags);
     }
 
     @Override

@@ -15,6 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
+import seedu.address.ui.PetDisplayHandler;
 
 /** The main LogicManager of the app. */
 public class LogicManager implements Logic {
@@ -56,6 +57,7 @@ public class LogicManager implements Logic {
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
+        model.updatePetDisplayHandler();
 
         return commandResult;
     }
@@ -83,5 +85,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public PetDisplayHandler getPetDisplayHandler() {
+        return model.getPetDisplayHandler();
     }
 }
