@@ -1,14 +1,8 @@
 package seedu.address.model.task;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
-import java.time.LocalDateTime;
 import java.time.Duration;
-
+import java.time.LocalDateTime;
 import seedu.address.model.task.exceptions.InvalidReminderException;
-import seedu.address.ui.MainWindow;
-
 
 /**
  * Represents a Task's priority number in the address book. Guarantees: immutable; is valid as
@@ -16,15 +10,17 @@ import seedu.address.ui.MainWindow;
  */
 public class Reminder {
 
-    public static final String MESSAGE_CONSTRAINTS = "Reminder should be in format DD/MM/YY@HH:mm eg 04/11/20@10:30";
-    public static final String VALIDATION_REGEX = "(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/(2[0-9])@(([0-1][0-9]|2[0-4]):([0-5][0-9]))";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Reminder should be in format DD/MM/YY@HH:mm eg 04/11/20@10:30";
+    public static final String VALIDATION_REGEX =
+            "(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/(2[0-9])@(([0-1][0-9]|2[0-4]):([0-5][0-9]))";
     private final LocalDateTime reminderDateTime;
     private boolean hasFired;
     private long delay;
 
-
     /**
      * Constructs a reminder with the corresponding time, description and name.
+     *
      * @param reminderDateTime
      * @param Description
      * @param Name
@@ -53,8 +49,9 @@ public class Reminder {
     }
 
     /**
-     * Sets the reminder based on the time delay calculated. 
-     * If it has fired then nothing is triggered.
+     * Sets the reminder based on the time delay calculated. If it has fired then nothing is
+     * triggered.
+     *
      * @throws InvalidReminderException if the time delay is negative and has not been fired before.
      */
     private void setDelay() throws InvalidReminderException {
@@ -68,9 +65,7 @@ public class Reminder {
         }
     }
 
-    /**
-     * @return the delay
-     */
+    /** @return the delay */
     public long getDelay() {
         return delay;
     }
@@ -81,5 +76,4 @@ public class Reminder {
         sb.append(reminderDateTime.toString());
         return sb.toString();
     }
-
 }

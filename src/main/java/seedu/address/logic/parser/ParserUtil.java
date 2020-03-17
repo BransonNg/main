@@ -16,20 +16,16 @@ import seedu.address.model.task.Priority;
 import seedu.address.model.task.Reminder;
 import seedu.address.model.task.exceptions.InvalidReminderException;
 
-/**
- * Contains utility methods used for parsing strings in the various *Parser
- * classes.
- */
+/** Contains utility methods used for parsing strings in the various *Parser classes. */
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
-     * and trailing whitespaces will be trimmed.
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing
+     * whitespaces will be trimmed.
      *
-     * @throws ParseException if the specified index is invalid (not non-zero
-     *                        unsigned integer).
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
@@ -40,11 +36,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
-     * and trailing whitespaces will be trimmed.
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing
+     * whitespaces will be trimmed.
      *
-     * @throws ParseException if the specified index is invalid (not non-zero
-     *                        unsigned integer).
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index[] parseIndices(String oneBasedIndices) throws ParseException {
         String trimmedIndices = oneBasedIndices.trim();
@@ -60,14 +55,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String reminder} into a {@code Reminder}. Leading and
-     * trailing whitespaces will be trimmed. Format to receive is DD/MM/YY@HH:mm eg
-     * 04/11/20@10:30
+     * Parses a {@code String reminder} into a {@code Reminder}. Leading and trailing whitespaces
+     * will be trimmed. Format to receive is DD/MM/YY@HH:mm eg 04/11/20@10:30
      *
-     * @throws ParseException           if the given {@code reminder} is invalid.
+     * @throws ParseException if the given {@code reminder} is invalid.
      * @throws InvalidReminderException
      */
-    public static Reminder parseReminder(String reminder) throws ParseException, InvalidReminderException {
+    public static Reminder parseReminder(String reminder)
+            throws ParseException, InvalidReminderException {
         requireNonNull(reminder);
         String trimmedReminder = reminder.trim();
         if (!Reminder.isValidReminder(trimmedReminder)) {
