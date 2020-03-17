@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import java.nio.file.Paths;
 import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
@@ -44,6 +45,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private PetDisplayHandler petDisplayHandler;
     private PomodoroDisplay pomodoroDisplay;
+    private StatisticsDisplay statisticsDisplay;
 
     @FXML private StackPane commandBoxPlaceholder;
 
@@ -58,6 +60,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML private StackPane petPlaceholder;
 
     @FXML private StackPane pomodoroPlaceholder;
+
+    @FXML private StackPane statisticsPlaceholder;
 
     public MainWindow(Stage primaryStage, Logic logic, PomodoroManager pomodoro) {
         super(FXML, primaryStage);
@@ -139,6 +143,15 @@ public class MainWindow extends UiPart<Stage> {
         pomodoroPlaceholder.getChildren().add(pomodoroDisplay.getRoot());
         pomodoro.setTimerLabel(pomodoroDisplay.getTimerLabel());
         pomodoro.setResultDisplay(resultDisplay);
+
+        statisticsDisplay =
+                new StatisticsDisplay("Time spent on Pomodoro over the last 7 days",
+                        null,
+                        Paths.get("images", "statistics", "progressBarDaily50%.png"),
+                        "50 mins / 100 mins",
+                        "Medals earned: 0");
+        statisticsPlaceholder.getChildren().add(statisticsDisplay.getRoot());
+       
     }
 
     /** Sets the default size based on {@code guiSettings}. */
