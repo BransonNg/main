@@ -4,7 +4,8 @@ matrix:
     - jdk: openjdk11
 
 script: >-
-    ./config/travis/run-checks.sh &&
+    ./config/travis/deploy_github_pages.sh &&
+    ./config/travis/check-line-endings.sh &&
     ./gradlew format clean coverage coveralls asciidoctor
 
 deploy:

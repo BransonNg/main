@@ -24,6 +24,8 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
+import seedu.address.storage.JsonPetStorage;
+import seedu.address.storage.JsonPomodoroStorage;
 import seedu.address.storage.JsonTaskListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -41,9 +43,13 @@ public class LogicManagerTest {
     public void setUp() {
         JsonTaskListStorage taskListStorage =
                 new JsonTaskListStorage(temporaryFolder.resolve("taskList.json"));
+        JsonPetStorage petStorage = new JsonPetStorage(temporaryFolder.resolve("pet.json"));
+        JsonPomodoroStorage pomodoroStorage =
+                new JsonPomodoroStorage(temporaryFolder.resolve("pomodoro.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(taskListStorage, userPrefsStorage);
+        StorageManager storage =
+                new StorageManager(taskListStorage, petStorage, pomodoroStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -69,11 +75,14 @@ public class LogicManagerTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonTaskListIoExceptionThrowingStub
         JsonTaskListStorage taskListStorage =
-                new JsonTaskListIoExceptionThrowingStub(
-                        temporaryFolder.resolve("ioExceptionTaskList.json"));
+                new JsonTaskListStorage(temporaryFolder.resolve("taskList.json"));
+        JsonPetStorage petStorage = new JsonPetStorage(temporaryFolder.resolve("pet.json"));
+        JsonPomodoroStorage pomodoroStorage =
+                new JsonPomodoroStorage(temporaryFolder.resolve("pomodoro.json"));
         JsonUserPrefsStorage userPrefsStorage =
-                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(taskListStorage, userPrefsStorage);
+                new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        StorageManager storage =
+                new StorageManager(taskListStorage, petStorage, pomodoroStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -140,7 +149,9 @@ public class LogicManagerTest {
             String inputCommand,
             Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getTaskList(), new UserPrefs());
+        Model expectedModel =
+                new ModelManager(
+                        model.getTaskList(), model.getPet(), model.getPomodoro(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

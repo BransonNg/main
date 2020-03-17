@@ -22,6 +22,7 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Done;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.Reminder;
 import seedu.address.model.task.Task;
 
 /** Edits the details of an existing person in the address book. */
@@ -108,8 +109,9 @@ public class EditCommand extends Command {
                 editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Done updatedDone = editTaskDescriptor.getDone().orElse(taskToEdit.getDone());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
+        Optional<Reminder> updatedOptionalReminder = editTaskDescriptor.getReminder();
 
-        return new Task(updatedName, updatedPriority, updatedDescription, updatedDone, updatedTags);
+        return new Task(updatedName, updatedPriority, updatedDescription, updatedDone, updatedTags, updatedOptionalReminder);
     }
 
     @Override
@@ -139,6 +141,7 @@ public class EditCommand extends Command {
         private Description description;
         private Done done;
         private Set<Tag> tags;
+        private Reminder reminder;
 
         public EditTaskDescriptor() {}
 
@@ -149,11 +152,12 @@ public class EditCommand extends Command {
             setDescription(toCopy.description);
             setDone(toCopy.done);
             setTags(toCopy.tags);
+            setReminder(toCopy.reminder);
         }
 
         /** Returns true if at least one field is edited. */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, priority, description, tags);
+            return CollectionUtil.isAnyNonNull(name, priority, description, tags, reminder);
         }
 
         public void setName(Name name) {
@@ -204,6 +208,14 @@ public class EditCommand extends Command {
             return (tags != null)
                     ? Optional.of(Collections.unmodifiableSet(tags))
                     : Optional.empty();
+        }
+
+        public void setReminder(Reminder reminder) {
+            this.reminder = reminder;
+        }
+
+        public Optional<Reminder> getReminder() {
+            return Optional.ofNullable(reminder);
         }
 
         @Override

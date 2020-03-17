@@ -51,15 +51,10 @@ public class JsonTaskListStorageTest {
     }
 
     @Test
-    public void readTaskList_invalidPersonTaskList_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTaskList("invalidTask.json"));
-    }
-
-    @Test
     public void readTaskList_invalidAndValidPersonTaskList_throwDataConversionException() {
         assertThrows(
                 DataConversionException.class,
-                () -> readTaskList("invalidAndValidPersonTaskList.json"));
+                () -> readTaskList("invalidAndValidTaskTaskList.json"));
     }
 
     @Test

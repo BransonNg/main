@@ -53,6 +53,7 @@ public class JsonUserPrefsStorageTest {
     public void readUserPrefs_fileInOrder_successfullyRead() throws DataConversionException {
         UserPrefs expected = getTypicalUserPrefs();
         UserPrefs actual = readUserPrefs("TypicalUserPref.json").get();
+
         assertEquals(expected, actual);
     }
 
@@ -75,7 +76,7 @@ public class JsonUserPrefsStorageTest {
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setTaskListFilePath(Paths.get("tasklist.json"));
+        userPrefs.setTaskListFilePath(Paths.get("data", "tasklist.json"));
         return userPrefs;
     }
 
