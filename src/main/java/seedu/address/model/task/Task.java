@@ -27,7 +27,13 @@ public class Task {
     private final Optional<Reminder> optionalReminder;
 
     /** Every field must be present and not null. */
-    public Task(Name name, Priority priority, Description description, Done done, Set<Tag> tags, Optional<Reminder> optionalReminder) {
+    public Task(
+            Name name,
+            Priority priority,
+            Description description,
+            Done done,
+            Set<Tag> tags,
+            Optional<Reminder> optionalReminder) {
         requireAllNonNull(name, priority, description, tags);
         this.name = name;
         this.priority = priority;
@@ -50,7 +56,12 @@ public class Task {
     }
 
     // without done provided
-    public Task(Name name, Priority priority, Description description, Set<Tag> tags, Optional<Reminder> optionalReminder) {
+    public Task(
+            Name name,
+            Priority priority,
+            Description description,
+            Set<Tag> tags,
+            Optional<Reminder> optionalReminder) {
         requireAllNonNull(name, priority, description, tags);
         this.name = name;
         this.priority = priority;
@@ -95,11 +106,10 @@ public class Task {
         return done;
     }
 
-
-	public Optional<Reminder> getOptionalReminder() {
+    public Optional<Reminder> getOptionalReminder() {
         // System.out.println("getReminder task: " + optionalReminder.get() );
-		return optionalReminder;
-	}
+        return optionalReminder;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException} if
@@ -162,5 +172,4 @@ public class Task {
         getTags().forEach(builder::append);
         return builder.toString();
     }
-
 }

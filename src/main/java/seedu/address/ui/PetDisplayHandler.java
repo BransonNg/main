@@ -13,6 +13,8 @@ public class PetDisplayHandler {
     private String levelText;
     private String expBarText;
 
+    private Path DEFAULT_ACCESSORY_PLACEHOLDER = Paths.get("images", "pet", "medal.png");
+
     public PetDisplayHandler(ReadOnlyPet pet) {
         this.pet = pet;
         updatePetDisplayHandler();
@@ -88,7 +90,7 @@ public class PetDisplayHandler {
                 break;
         }
 
-        this.accessoryFilepath = null;
+        this.accessoryFilepath = DEFAULT_ACCESSORY_PLACEHOLDER;
     }
 
     public void updatePetDisplay() {

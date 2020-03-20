@@ -12,14 +12,23 @@
    <children>
       <VBox prefHeight="75.0">
          <children>
-            <Label fx:id="levelView" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Level 0">
-               <font>
-                  <Font size="26.0" />
-               </font>
+            <HBox maxHeight="30.0" minHeight="30.0" prefHeight="30.0">
+               <children>
+                  <Label text="Level ">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="levelView" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="0">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+               </children>
                <VBox.margin>
                   <Insets left="10.0" />
                </VBox.margin>
-            </Label>
+            </HBox>
             <Label fx:id="expBarView" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="0 XP / 100 XP">
                <font>
                   <Font size="18.0" />
@@ -52,4 +61,3 @@
       </HBox>
    </children>
 </VBox>
-

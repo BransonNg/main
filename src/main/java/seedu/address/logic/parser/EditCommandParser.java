@@ -5,8 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -31,7 +31,12 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
-                        args, PREFIX_NAME, PREFIX_PRIORITY, PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_REMINDER);
+                        args,
+                        PREFIX_NAME,
+                        PREFIX_PRIORITY,
+                        PREFIX_DESCRIPTION,
+                        PREFIX_TAG,
+                        PREFIX_REMINDER);
 
         Index index;
 
@@ -57,7 +62,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_REMINDER).isPresent()) {
-            editTaskDescriptor.setReminder(ParserUtil.parseReminder(argMultimap.getValue(PREFIX_REMINDER).get()));
+            editTaskDescriptor.setReminder(
+                    ParserUtil.parseReminder(argMultimap.getValue(PREFIX_REMINDER).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))

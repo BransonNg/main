@@ -4,8 +4,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Optional;
 import java.util.Set;
@@ -23,18 +23,22 @@ import seedu.address.model.task.exceptions.InvalidReminderException;
 /** Parses input arguments and creates a new AddCommand object */
 public class AddCommandParser implements Parser<AddCommand> {
 
-        /**
-         * Parses the given {@code String} of arguments in the context of the AddCommand
-         * and returns an AddCommand object for execution.
-         *
-         * @throws ParseException           if the user input does not conform the
-         *                                  expected format
-         * @throws InvalidReminderException
-         */
-        public AddCommand parse(String args) throws ParseException {
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddCommand and returns an
+     * AddCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format
+     * @throws InvalidReminderException
+     */
+    public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
-                        args, PREFIX_NAME, PREFIX_PRIORITY, PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_REMINDER);
+                        args,
+                        PREFIX_NAME,
+                        PREFIX_PRIORITY,
+                        PREFIX_DESCRIPTION,
+                        PREFIX_TAG,
+                        PREFIX_REMINDER);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
@@ -63,9 +67,12 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Optional<Reminder> optionalReminder = (argMultimap.getValue(PREFIX_REMINDER).isEmpty())
-                                ? Optional.empty()
-                                : Optional.of(ParserUtil.parseReminder(argMultimap.getValue(PREFIX_REMINDER).get()));
+        Optional<Reminder> optionalReminder =
+                (argMultimap.getValue(PREFIX_REMINDER).isEmpty())
+                        ? Optional.empty()
+                        : Optional.of(
+                                ParserUtil.parseReminder(
+                                        argMultimap.getValue(PREFIX_REMINDER).get()));
 
         Task task = new Task(name, priority, description, tagList, optionalReminder);
 
