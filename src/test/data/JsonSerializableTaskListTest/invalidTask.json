@@ -1,0 +1,9 @@
+{
+  "tasks": [
+    {
+      "name": "Buy Milk",
+      "priority": "important",
+      "description": "Lorem ipsum description"
+    }
+  ]
+}

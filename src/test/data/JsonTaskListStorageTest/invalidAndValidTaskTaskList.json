@@ -1,0 +1,14 @@
+{
+  "tasks": [
+    {
+      "name": "Task With Invalid Priority Field",
+      "priority": "948asdf2424",
+      "description": "4th street"
+    },
+    {
+      "name": "Valid Task",
+      "priority": "1",
+      "description": "4th street"
+    }
+  ]
+}

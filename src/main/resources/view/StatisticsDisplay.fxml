@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="statisticsPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Daily Challenge">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="progressDaily" text="0 mins / 100 mins">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="progressBarDaily" fitHeight="30.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+      <Region prefHeight="20.0" prefWidth="200.0" />
+      <Label fx:id="medals" text="Medals earned: 0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Region prefHeight="60.0" prefWidth="200.0" />
+      <Label fx:id="barChartTitle" alignment="CENTER" text="title" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <BarChart fx:id="barChart" prefHeight="174.0" prefWidth="340.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+   </children>
+</VBox>

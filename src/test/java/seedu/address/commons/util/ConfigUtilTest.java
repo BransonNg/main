@@ -9,10 +9,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Level;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
 import seedu.address.commons.core.Config;
 import seedu.address.commons.exceptions.DataConversionException;
 
@@ -20,8 +18,7 @@ public class ConfigUtilTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "ConfigUtilTest");
 
-    @TempDir
-    public Path tempDir;
+    @TempDir public Path tempDir;
 
     @Test
     public void read_null_throwsNullPointerException() {
@@ -68,7 +65,8 @@ public class ConfigUtilTest {
         return config;
     }
 
-    private Optional<Config> read(String configFileInTestDataFolder) throws DataConversionException {
+    private Optional<Config> read(String configFileInTestDataFolder)
+            throws DataConversionException {
         Path configFilePath = addToTestDataPathIfNotNull(configFileInTestDataFolder);
         return ConfigUtil.readConfig(configFilePath);
     }
@@ -89,12 +87,12 @@ public class ConfigUtilTest {
 
         Path configFilePath = tempDir.resolve("TempConfig.json");
 
-        //Try writing when the file doesn't exist
+        // Try writing when the file doesn't exist
         ConfigUtil.saveConfig(original, configFilePath);
         Config readBack = ConfigUtil.readConfig(configFilePath).get();
         assertEquals(original, readBack);
 
-        //Try saving when the file exists
+        // Try saving when the file exists
         original.setLogLevel(Level.FINE);
         ConfigUtil.saveConfig(original, configFilePath);
         readBack = ConfigUtil.readConfig(configFilePath).get();
@@ -108,9 +106,7 @@ public class ConfigUtilTest {
 
     private Path addToTestDataPathIfNotNull(String configFileInTestDataFolder) {
         return configFileInTestDataFolder != null
-                                  ? TEST_DATA_FOLDER.resolve(configFileInTestDataFolder)
-                                  : null;
+                ? TEST_DATA_FOLDER.resolve(configFileInTestDataFolder)
+                : null;
     }
-
-
 }

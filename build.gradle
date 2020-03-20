@@ -11,6 +11,7 @@ plugins {
     id 'com.github.kt3k.coveralls' version '2.4.0'
     id 'com.github.johnrengelman.shadow' version '4.0.4'
     id 'org.asciidoctor.convert' version '1.5.6'
+    id 'com.github.sherter.google-java-format' version '0.8'
     id 'application'
 }
 
@@ -35,6 +36,21 @@ jacocoTestReport {
         csv.enabled false
         html.destination file("${buildDir}/jacocoHtml")
     }
+}
+
+googleJavaFormat {
+    source 'src/main'
+    source 'src/test'
+    include '**/*.java'
+    options style: 'AOSP'
+}
+
+import com.github.sherter.googlejavaformatgradleplugin.GoogleJavaFormat
+
+task format(type: GoogleJavaFormat) {
+  source 'src/main'
+  source 'src/test'
+  include '**/*.java'
 }
 
 test {

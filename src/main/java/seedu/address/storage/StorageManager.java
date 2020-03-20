@@ -4,26 +4,33 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
-
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyPet;
+import seedu.address.model.ReadOnlyPomodoro;
+import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
-/**
- * Manages storage of AddressBook data in local storage.
- */
+/** Manages storage of TaskList data in local storage. */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private TaskListStorage taskListStorage;
     private UserPrefsStorage userPrefsStorage;
+    private PetStorage petStorage;
+    private PomodoroStorage pomodoroStorage;
 
-
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    // NOTE these storage objects all correspond to Json-storagename, i.e. JsonTaskListStorage, ...
+    public StorageManager(
+            TaskListStorage taskListStorage,
+            PetStorage petStorage,
+            PomodoroStorage pomodoroStorage,
+            UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.taskListStorage = taskListStorage;
+        this.petStorage = petStorage;
+        this.pomodoroStorage = pomodoroStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -44,34 +51,73 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-
-    // ================ AddressBook methods ==============================
+    // ================ TaskList methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getTaskListFilePath() {
+        return taskListStorage.getTaskListFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyTaskList> readTaskList() throws DataConversionException, IOException {
+        return readTaskList(taskListStorage.getTaskListFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyTaskList> readTaskList(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return taskListStorage.readTaskList(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveTaskList(ReadOnlyTaskList taskList) throws IOException {
+        saveTaskList(taskList, taskListStorage.getTaskListFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveTaskList(ReadOnlyTaskList taskList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        taskListStorage.saveTaskList(taskList, filePath);
+    }
+    // ================ Pet methods ==============================
+    @Override
+    public Path getPetFilePath() {
+        return petStorage.getPetFilePath();
     }
 
+    @Override
+    public Optional<ReadOnlyPet> readPet() throws DataConversionException, IOException {
+        return readPet(petStorage.getPetFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyPet> readPet(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return petStorage.readPet(filePath);
+    }
+
+    @Override
+    public void savePet(ReadOnlyPet pet) throws IOException {
+        savePet(pet, petStorage.getPetFilePath());
+    }
+
+    @Override
+    public void savePet(ReadOnlyPet pet, Path filePath) throws IOException {
+        logger.fine("Attempting to write pet data: " + filePath);
+        petStorage.savePet(pet, filePath);
+    }
+
+    // ================ Pomodoro methods ==============================
+    @Override
+    public Optional<ReadOnlyPomodoro> readPomodoro() throws DataConversionException, IOException {
+        return pomodoroStorage.readPomodoro();
+    }
+
+    @Override
+    public void savePomodoro(ReadOnlyPomodoro pomodoro) throws IOException {
+        logger.fine("Attempting to write pomodoro data: ");
+        pomodoroStorage.savePomodoro(pomodoro);
+    }
 }

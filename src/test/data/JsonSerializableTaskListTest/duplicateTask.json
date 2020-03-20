@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "name": "Buy Milk",
+      "priority": "1",
+      "description": "Lorem Ipsum description",
+      "done" : "N",
+      "tagged": [
+        "friends"
+      ]
+    },
+    {
+      "name": "Buy Milk",
+      "priority": "1",
+      "description": "Lorem Ipsum description",
+      "done" : "N",
+      "tagged": [
+        "friends"
+      ]
+    }
+  ]
+}

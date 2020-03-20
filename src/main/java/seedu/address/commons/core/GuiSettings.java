@@ -4,10 +4,7 @@ import java.awt.Point;
 import java.io.Serializable;
 import java.util.Objects;
 
-/**
- * A Serializable class that contains the GUI settings.
- * Guarantees: immutable.
- */
+/** A Serializable class that contains the GUI settings. Guarantees: immutable. */
 public class GuiSettings implements Serializable {
 
     private static final double DEFAULT_HEIGHT = 600;
@@ -46,7 +43,7 @@ public class GuiSettings implements Serializable {
         if (other == this) {
             return true;
         }
-        if (!(other instanceof GuiSettings)) { //this handles null as well.
+        if (!(other instanceof GuiSettings)) { // this handles null as well.
             return false;
         }
 

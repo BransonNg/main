@@ -300,45 +300,44 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |view all current ongoing tasks |manage my tasks and time
 
-|`* * *` |user |view all tasks I have completed |monitor my progress
-
 |`* * *` |user |able to edit my task description |make changes in the event something unexpected happens
 
 |`* * *` |user |add a task by specifying a task description only |record tasks that needs to be done.
 
 |`* * *` |user |add a task by specifying a task description and a reminder |record tasks that needs to be done by a specific period
 
-|`* * *` |user |be rewarded for completing my tasks |feel satisfied and motivated to perform
+|`* * *` |user |sort upcoming tasks by date |filter out the latest/oldest tasks according to my needs
 
-|`* * *` |user |sort upcoming taks by date |filter out the latest/oldest tasks according to my needs
+|`* * *` |user |sort my tasks by priority |manage my tasks
 
 |`* * *` |user |delete a task |remove tasks that I no longer care to track
 
-|`* * *` |user |utlise the pomodoro technique to break down my work into intervals |boost productivity and keep track of time
+|`* * *` |user |utilise the Pomodoro technique to break down my work into structured intervals |boost productivity and keep track of time
 
-|`* * *` |lazy user |reminder system |be on track to complete my tasks
+|`* * *` |user |be able to remind myself on when I plan to work on a task |be on track to complete my tasks
 
-|`* * *` |lazy user |gamification |be incentivised to work on my tasks
+|`* * *` |user |get a visual cue from my pet to prompt me to do work|be motivated to work when my productivity is low
 
-|`* * *` |pro user |navigate commands using shortcuts |save more time
+|`* * *` |user |keep track of the time spent on each task |check my progress
+
+|`* *` |pro user |navigate commands using shortcuts |save more time
 
 |`* *` |pro user |delete several tasks at once |save more time
 
 |`* *` |pro user |mark several tasks done at once |save more time
 
-|`* *` |user |be greeted by a cute mascot |feel happy and motivated to do work
-
-|`* *` |user |sort my tasks by difficulty/priority |manage my tasks
-
-|`* *` |user |keep track of the time spent on each task |check my progress
-
-|`* *` |user |see my pet grow and gain accessories because of my productivity |am more motivated to stay productive
-
-|`* *` |pro user |customise the rate at which I should do work |fit my workstyle better
+|`* *` |pro user |customise the rate at which I should do work in the Pomodoro |fit my workstyle better
 
 |`* *` |pro user |automate when my done tasks are cleared |customise when I want my tasks to be removed
 
-|`*` |user |customise my pet with different seasons |I am more entertained
+|`* *` |user |view the total number of tasks/duration spent on tasks I have done over a period of time |track my productivity over different periods
+
+|`* *` |user |view the durations in which I have currently spent on different tasks |better allocate my time
+
+|`* *` |user |see my pet grow because of my productivity |am more motivated to stay productive
+
+|`*` |user |be greeted by a cute mascot |feel happy and motivated to do work
+
 
 |=======================================================================
 
@@ -415,9 +414,6 @@ Use case ends.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 .  Graphics should not be offensive to any culture in any way
 .  Product should function with CLI alone
-.  Product should be usable by people with no initial knowledge of Pomodoro
-
-_{More to be added}_
 
 [appendix]
 == Glossary

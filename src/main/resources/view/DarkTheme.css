@@ -1,12 +1,13 @@
+
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */
 }
 
+
 .label {
-    -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #555555;
+    //-fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #fb7a7a;
     -fx-opacity: 0.9;
 }
 
@@ -16,6 +17,7 @@
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
+
 
 .label-header {
     -fx-font-size: 32pt;
@@ -37,7 +39,22 @@
     -fx-padding: 0 0 0 0;
     -fx-min-height: 0;
     -fx-max-height: 0;
+	-fx-background-color: #1d1d1d;
 }
+
+.tab-header-background {
+    -fx-background-color: #383838 ;
+}
+
+.tab-pane .tab
+{
+    -fx-background-color: #4d4d4d;
+}
+
+.tab .tab-label {
+    -fx-text-fill: white;
+}
+
 
 .table-view {
     -fx-base: #1d1d1d;

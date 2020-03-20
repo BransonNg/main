@@ -9,11 +9,11 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 /**
- * Configures and manages loggers and handlers, including their logging level
- * Named {@link Logger}s can be obtained from this class<br>
- * These loggers have been configured to output messages to the console and a {@code .log} file by default,
- *   at the {@code INFO} level. A new {@code .log} file with a new numbering will be created after the log
- *   file reaches 5MB big, up to a maximum of 5 files.<br>
+ * Configures and manages loggers and handlers, including their logging level Named {@link Logger}s
+ * can be obtained from this class<br>
+ * These loggers have been configured to output messages to the console and a {@code .log} file by
+ * default, at the {@code INFO} level. A new {@code .log} file with a new numbering will be created
+ * after the log file reaches 5MB big, up to a maximum of 5 files.<br>
  */
 public class LogsCenter {
     private static final int MAX_FILE_COUNT = 5;
@@ -25,19 +25,17 @@ public class LogsCenter {
     private static ConsoleHandler consoleHandler;
 
     /**
-     * Initializes with a custom log level (specified in the {@code config} object)
-     * Loggers obtained *AFTER* this initialization will have their logging level changed<br>
-     * Logging levels for existing loggers will only be updated if the logger with the same name
-     * is requested again from the LogsCenter.
+     * Initializes with a custom log level (specified in the {@code config} object) Loggers obtained
+     * *AFTER* this initialization will have their logging level changed<br>
+     * Logging levels for existing loggers will only be updated if the logger with the same name is
+     * requested again from the LogsCenter.
      */
     public static void init(Config config) {
         currentLogLevel = config.getLogLevel();
         logger.info("currentLogLevel: " + currentLogLevel);
     }
 
-    /**
-     * Creates a logger with the given name.
-     */
+    /** Creates a logger with the given name. */
     public static Logger getLogger(String name) {
         Logger logger = Logger.getLogger(name);
         logger.setUseParentHandlers(false);
@@ -49,9 +47,7 @@ public class LogsCenter {
         return Logger.getLogger(name);
     }
 
-    /**
-     * Creates a Logger for the given class name.
-     */
+    /** Creates a Logger for the given class name. */
     public static <T> Logger getLogger(Class<T> clazz) {
         if (clazz == null) {
             return Logger.getLogger("");
@@ -70,12 +66,9 @@ public class LogsCenter {
         logger.addHandler(consoleHandler);
     }
 
-    /**
-     * Remove all the handlers from {@code logger}.
-     */
+    /** Remove all the handlers from {@code logger}. */
     private static void removeHandlers(Logger logger) {
-        Arrays.stream(logger.getHandlers())
-                .forEach(logger::removeHandler);
+        Arrays.stream(logger.getHandlers()).forEach(logger::removeHandler);
     }
 
     /**
@@ -95,10 +88,12 @@ public class LogsCenter {
 
     /**
      * Creates a {@code FileHandler} for the log file.
+     *
      * @throws IOException if there are problems opening the file.
      */
     private static FileHandler createFileHandler() throws IOException {
-        FileHandler fileHandler = new FileHandler(LOG_FILE, MAX_FILE_SIZE_IN_BYTES, MAX_FILE_COUNT, true);
+        FileHandler fileHandler =
+                new FileHandler(LOG_FILE, MAX_FILE_SIZE_IN_BYTES, MAX_FILE_COUNT, true);
         fileHandler.setFormatter(new SimpleFormatter());
         fileHandler.setLevel(currentLogLevel);
         return fileHandler;
