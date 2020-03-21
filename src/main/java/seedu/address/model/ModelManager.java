@@ -11,18 +11,15 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
-import seedu.address.ui.PetDisplayHandler;
-
-// TODO Set Pet attributes via ModelManager
+import seedu.address.model.Pet;
 
 /** Represents the in-memory model of the address book data. */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final TaskList taskList;
-    private final Pet pet;
     private final Pomodoro pomodoro;
-    private final PetDisplayHandler petDisplayHandler;
+    private final Pet pet;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
 
@@ -40,7 +37,6 @@ public class ModelManager implements Model {
         this.taskList = new TaskList(taskList);
         this.pet = new Pet(pet); // initialize a pet as a model
         this.pomodoro = new Pomodoro(pomodoro); // initialize a pet as a model
-        this.petDisplayHandler = new PetDisplayHandler(this.pet);
         logger.info(String.format("Initializing with Pet: %s", this.pet.toString()));
         logger.info(String.format("Initializing with Pomodoro: %s", this.pomodoro.toString()));
 
@@ -178,16 +174,6 @@ public class ModelManager implements Model {
         return pomodoro;
     }
 
-    @Override
-    public PetDisplayHandler getPetDisplayHandler() {
-        return petDisplayHandler;
-    }
-
-    @Override
-    public void updatePetDisplayHandler() {
-        this.petDisplayHandler.updatePetDisplay();
-    }
-
     // ============================ Pomodoro Manager
 
     public void setPomodoroTask(Task task) {
@@ -197,5 +183,10 @@ public class ModelManager implements Model {
     @Override
     public void incrementExp() {
         this.pet.incrementExp();
+    }
+
+    @Override
+    public void incrementPomExp() {
+        this.pet.incrementPomExp();
     }
 }

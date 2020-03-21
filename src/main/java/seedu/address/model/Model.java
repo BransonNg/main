@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.task.Task;
-import seedu.address.ui.PetDisplayHandler;
+import seedu.address.model.Pet;
 
 /** The API of the Model component. */
 public interface Model {
@@ -70,9 +70,7 @@ public interface Model {
 
     void incrementExp();
 
-    PetDisplayHandler getPetDisplayHandler();
-
-    void updatePetDisplayHandler();
+    void incrementPomExp();
 
     ReadOnlyPomodoro getPomodoro();
 

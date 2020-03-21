@@ -39,6 +39,16 @@ public class Pet implements ReadOnlyPet {
         this.level = Integer.toString(levelInteger);
     }
 
+    public void incrementPomExp() {
+        int newExp = Integer.parseInt(this.exp) + 25;
+        this.exp = Integer.toString(newExp);
+
+        // update level
+        int expInteger = Integer.parseInt(this.exp);
+        int levelInteger = (int) Math.ceil(expInteger / 99.0);
+        this.level = Integer.toString(levelInteger);
+    }
+
     @Override
     public String getName() {
         return name;

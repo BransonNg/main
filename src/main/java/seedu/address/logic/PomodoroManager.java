@@ -113,6 +113,7 @@ public class PomodoroManager {
                 event -> {
                     this.setPromptState(PROMPT_STATE.CHECK_DONE);
                     resultDisplay.setFeedbackToUser(CHECK_DONE_MESSAGE);
+                    model.incrementPomExp();
                 });
     }
 
